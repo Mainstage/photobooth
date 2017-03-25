@@ -160,3 +160,68 @@ input, textarea, keygen, select, button {
 input[type="file"] {
   display: none;
 }
+
+.view-select {
+  text-align: center;
+}
+
+.view-select > * {
+  height: 6em;
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+}
+
+.main-photo-container {
+  height: 40em;
+}
+
+.main-photo {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.carousel-nav {
+  text-align: center;
+}
+
+.carousel-nav > * {
+  height: 6em;
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  background: white;
+  border: 1px solid grey;
+  border-radius: 1em;
+}
+
+.link-to {
+  display: block;
+  text-align: center;
+  font-size: 300%;
+  margin: 2em;
+}
+
+.link-to p {
+  color: white;
+  padding: 1em;
+  background: black;
+  border: 1px solid white;
+  border-radius: 1em;
+  font-weight: bold;
+}
+
+.gallery-container {
+  text-align: center;
+}
+
+.gallery-container img {
+  height: 12em;
+  padding: 1em;
+  display: inline-block;
+}
