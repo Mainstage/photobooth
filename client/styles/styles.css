@@ -1,0 +1,162 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+button, .submit {
+  padding: .2em;
+  margin: .5em;
+}
+
+/*
+  ========================================
+  Custom styles
+  ========================================
+*/
+@media (max-width: 1200px) {
+  body {
+    font-size: 1.3vw;
+  }
+}
+
+@media (min-width: 1201px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+body {
+  background: black;
+  color: #888;
+  font-family: "Rajdhani";
+  line-height: 1.2;
+}
+
+h1, h2, h3, h4 {
+  color: #aaa;
+}
+
+h1 {
+  font-size: 400%;
+  font-weight: 700;
+}
+h2 {
+  color: #0a0;
+  font-size: 200%;
+  font-weight: 600;
+}
+h3 {
+  font-size: 150%;
+}
+h4 {
+  font-size: 105%;
+}
+a {
+  color: #648880;
+  text-decoration: none;
+}
+a:hover {
+  color: #a9b2b9;
+}
+p a {
+  border-bottom: 1px solid #dfe2e5;
+}
+img {
+  overflow: hidden;
+}
+input, textarea, keygen, select, button {
+  font-size: 100%;
+}
+
+/*
+  ========================================
+  Global Component Styling
+  ========================================
+*/
+
+#app {
+  position: relative;
+  max-width: 1200px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  text-align: center;
+  color: #00aa00;
+  width: 100%;
+  font-size: 1000%;
+  padding: 0.5em 0;
+}
+
+.BG {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url("https://storage.googleapis.com/the-site-1341.appspot.com/assets/bgdark4.jpg");
+  background-repeat: repeat-y;
+}
+
+.cameraInput {
+  margin: 0 auto;
+  width: 50%;
+  height: 25em;
+  font-size: 1.25em;
+  font-weight: 700;
+  color: white;
+  background-color: white;
+  display: block;
+  border: 1px solid grey;
+  border-radius: 2em;
+}
+
+.cameraInput img {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+}
+
+input[type="file"] {
+  display: none;
+}
