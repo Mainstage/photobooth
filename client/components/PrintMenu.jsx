@@ -17,6 +17,7 @@ class PrintMenu extends React.Component {
     };
     this.select = this.select.bind(this);
     this.changeIndex = this.changeIndex.bind(this);
+    this.print = this.print.bind(this);
   }
 
   componentWillMount() {
@@ -43,7 +44,10 @@ class PrintMenu extends React.Component {
   }
 
   print(i) {
-    console.log('print');
+    const { images } = this.state;
+    const print = window.open(`photos/${images[i]}`, '_blank');
+    print.print();
+    print.close();
   }
 
   render() {

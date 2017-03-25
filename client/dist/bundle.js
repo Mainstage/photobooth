@@ -36176,6 +36176,7 @@
 	    };
 	    _this.select = _this.select.bind(_this);
 	    _this.changeIndex = _this.changeIndex.bind(_this);
+	    _this.print = _this.print.bind(_this);
 	    return _this;
 	  }
 
@@ -36212,7 +36213,11 @@
 	  }, {
 	    key: 'print',
 	    value: function print(i) {
-	      console.log('print');
+	      var images = this.state.images;
+
+	      var print = window.open('photos/' + images[i], '_blank');
+	      print.print();
+	      print.close();
 	    }
 	  }, {
 	    key: 'render',
