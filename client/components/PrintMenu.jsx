@@ -47,7 +47,6 @@ class PrintMenu extends React.Component {
     const { images } = this.state;
     const print = window.open(`photos/${images[i]}`, '_blank');
     print.print();
-    print.close();
   }
 
   render() {
