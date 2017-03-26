@@ -36177,12 +36177,19 @@
 	    _this.select = _this.select.bind(_this);
 	    _this.changeIndex = _this.changeIndex.bind(_this);
 	    _this.print = _this.print.bind(_this);
+	    _this.getPhotos = _this.getPhotos.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(PrintMenu, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
+	      this.getPhotos();
+	      setInterval(this.getPhotos, 5000);
+	    }
+	  }, {
+	    key: 'getPhotos',
+	    value: function getPhotos() {
 	      var _this2 = this;
 
 	      _axios2.default.get('/photos').then(function (res) {

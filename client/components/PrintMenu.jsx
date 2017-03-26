@@ -18,12 +18,18 @@ class PrintMenu extends React.Component {
     this.select = this.select.bind(this);
     this.changeIndex = this.changeIndex.bind(this);
     this.print = this.print.bind(this);
+    this.getPhotos = this.getPhotos.bind(this);
   }
 
   componentWillMount() {
+    this.getPhotos();
+    setInterval(this.getPhotos, 5000);
+  }
+
+  getPhotos() {
     axios.get('/photos')
       .then((res) => {
-        this.setState({ images: res.data });
+        this.setState({images: res.data});
       });
   }
 
