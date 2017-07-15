@@ -529,7 +529,7 @@ input, textarea, keygen, select, button {
   background-repeat: repeat-y; }
 
 .cameraInput {
-  margin: 0 auto;
+  margin: 0 auto 1rem auto;
   width: 50%;
   height: 25em;
   font-size: 1.25em;

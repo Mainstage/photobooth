@@ -2,6 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 
+const chain = (array, func, cb) => {
+  let fin = 0;
+  const finCheck = () => {
+    fin++;
+    if (fin === array.length) {
+      if (cb) {
+        cb();
+      }
+    } else {
+      func(array[fin], finCheck);
+    };
+  };
+  func(array[fin], finCheck);
+};
+
 class PhotoUpload extends React.Component {
   constructor() {
     super();
@@ -11,7 +26,11 @@ class PhotoUpload extends React.Component {
     this.upload = this.upload.bind(this);
   }
 
-  upload(file) {
+  uploadMult(files) {
+    chain(files, this.upload)
+  }
+
+  upload(file, cb) {
     this.setState({ uploading: true });
     axios.post('/photo', file, {
       headers: {
@@ -20,6 +39,10 @@ class PhotoUpload extends React.Component {
       .then((res) => {
         this.setState({
           uploading: false,
+        }, () => {
+          if (cb) {
+            cb();
+          }
         });
       })
       .catch((err) => {
@@ -40,22 +63,36 @@ class PhotoUpload extends React.Component {
           alt=""
         />);
       }
-      return (<label className="cameraInput">
-        <input
-          name="camera"
-          id="camera"
-          type="file"
-          accept="image/*"
-          capture="camera"
-          onChange={(e) => {
-            this.upload(e.target.files[0]);
-          }}
-        />
-        <img
-          src="assets/ic_camera.svg"
-          alt=""
-        />
-      </label>);
+      return (<div className="upload-btns">
+        <label className="cameraInput">
+          <input
+            type="file"
+            accept="image/*"
+            capture="camera"
+            onChange={(e) => {
+              this.upload(e.target.files[0]);
+            }}
+          />
+          <img
+            src="assets/ic_camera.svg"
+            alt=""
+          />
+        </label>
+        <label className="cameraInput">
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={(e) => {
+              this.uploadMult(e.target.files);
+            }}
+          />
+          <img
+            src="assets/file_upload.svg"
+            alt=""
+          />
+        </label>
+      </div>);
     };
     return (
       <div className="photo-container">

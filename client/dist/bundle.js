@@ -34530,6 +34530,21 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var chain = function chain(array, func, cb) {
+	  var fin = 0;
+	  var finCheck = function finCheck() {
+	    fin++;
+	    if (fin === array.length) {
+	      if (cb) {
+	        cb();
+	      }
+	    } else {
+	      func(array[fin], finCheck);
+	    };
+	  };
+	  func(array[fin], finCheck);
+	};
+
 	var PhotoUpload = function (_React$Component) {
 	  _inherits(PhotoUpload, _React$Component);
 
@@ -34546,8 +34561,13 @@
 	  }
 
 	  _createClass(PhotoUpload, [{
+	    key: 'uploadMult',
+	    value: function uploadMult(files) {
+	      chain(files, this.upload);
+	    }
+	  }, {
 	    key: 'upload',
-	    value: function upload(file) {
+	    value: function upload(file, cb) {
 	      var _this2 = this;
 
 	      this.setState({ uploading: true });
@@ -34557,6 +34577,10 @@
 	        } }).then(function (res) {
 	        _this2.setState({
 	          uploading: false
+	        }, function () {
+	          if (cb) {
+	            cb();
+	          }
 	        });
 	      }).catch(function (err) {
 	        console.error(err);
@@ -34581,22 +34605,40 @@
 	          });
 	        }
 	        return _react2.default.createElement(
-	          'label',
-	          { className: 'cameraInput' },
-	          _react2.default.createElement('input', {
-	            name: 'camera',
-	            id: 'camera',
-	            type: 'file',
-	            accept: 'image/*',
-	            capture: 'camera',
-	            onChange: function onChange(e) {
-	              _this3.upload(e.target.files[0]);
-	            }
-	          }),
-	          _react2.default.createElement('img', {
-	            src: 'assets/ic_camera.svg',
-	            alt: ''
-	          })
+	          'div',
+	          { className: 'upload-btns' },
+	          _react2.default.createElement(
+	            'label',
+	            { className: 'cameraInput' },
+	            _react2.default.createElement('input', {
+	              type: 'file',
+	              accept: 'image/*',
+	              capture: 'camera',
+	              onChange: function onChange(e) {
+	                _this3.upload(e.target.files[0]);
+	              }
+	            }),
+	            _react2.default.createElement('img', {
+	              src: 'assets/ic_camera.svg',
+	              alt: ''
+	            })
+	          ),
+	          _react2.default.createElement(
+	            'label',
+	            { className: 'cameraInput' },
+	            _react2.default.createElement('input', {
+	              type: 'file',
+	              accept: 'image/*',
+	              multiple: true,
+	              onChange: function onChange(e) {
+	                _this3.uploadMult(e.target.files);
+	              }
+	            }),
+	            _react2.default.createElement('img', {
+	              src: 'assets/file_upload.svg',
+	              alt: ''
+	            })
+	          )
 	        );
 	      };
 	      return _react2.default.createElement(
